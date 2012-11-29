@@ -33,6 +33,17 @@ class Dollars_ft extends EE_Fieldtype
 		));
 	}
 
+
+	function display_cell($data)
+	{
+		return form_input(array(
+			'name'	=> $this->cell_name,
+			'id'	=> $this->col_id,
+			'class' => 'matrix-textarea',
+			'value'	=> ( ! empty($data) AND is_numeric($data)) ? '$'.number_format(intval($data), 2) : ''
+		));
+	}
+
 	
 	function install()
 	{
@@ -62,6 +73,12 @@ class Dollars_ft extends EE_Fieldtype
 	}
 
 
+	function validate_cell($data)
+	{
+		return $this->validate($data);
+	}
+
+
 	function settings_modify_column($data)
 	{
 		$fields['field_id_'.$data['field_id']]['type']    = 'INT';
@@ -75,6 +92,13 @@ class Dollars_ft extends EE_Fieldtype
 	{
 		return $this->_strip_format($data);
 	}
+
+
+	function save_cell($data)
+	{
+		return $this->_strip_format($data);
+	}
+
 
 	/**
 	 * strip out dollar signs and commas, essentially making this an int
