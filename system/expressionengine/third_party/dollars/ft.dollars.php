@@ -12,14 +12,15 @@ class Dollars_ft extends EE_Fieldtype
 	
 	var $info = array(
 		'name'		=> 'Dollars',
-		'version'	=> '1.0.1',
+		'version'	=> '1.0.2',
 		'author'	=> 'Matt Stein'
 	);
 	
 
 	function Dollars_ft()
 	{
-		parent::EE_Fieldtype();
+		parent::__construct();
+
 		$this->EE->lang->loadfile('dollars');
 	}
 	
